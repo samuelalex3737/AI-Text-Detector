@@ -3,6 +3,8 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch.nn.functional as F
 
+import os
+
 # -----------------------------------------------------------------------------
 # App Configuration & Loading
 # -----------------------------------------------------------------------------
@@ -16,7 +18,9 @@ def load_model():
     """
     try:
         # Load the Round 2 model saved as 'detector'
-        model = AutoModelForSequenceClassification.from_pretrained('./detector')
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        model_path = os.path.join(base_dir, 'detector')
+        model = AutoModelForSequenceClassification.from_pretrained(model_path)
         # We used the base distilbert tokenizer during training
         tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
         return model, tokenizer
