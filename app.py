@@ -20,6 +20,18 @@ def load_model():
         # Load the Round 2 model saved as 'detector'
         base_dir = os.path.dirname(os.path.abspath(__file__))
         model_path = os.path.join(base_dir, 'detector')
+        
+        # Reconstruct split model if needed
+        model_file = os.path.join(model_path, 'model.safetensors')
+        if not os.path.exists(model_file):
+            parts = [f for f in os.listdir(model_path) if f.startswith('model.safetensors.part')]
+            if parts:
+                parts.sort(key=lambda x: int(x.split('part')[-1]))
+                with open(model_file, 'wb') as outfile:
+                    for part in parts:
+                        with open(os.path.join(model_path, part), 'rb') as infile:
+                            outfile.write(infile.read())
+                            
         model = AutoModelForSequenceClassification.from_pretrained(model_path)
         # We used the base distilbert tokenizer during training
         tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
