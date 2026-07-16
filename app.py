@@ -10,6 +10,87 @@ import os
 # -----------------------------------------------------------------------------
 st.set_page_config(page_title="AI Text Detector", page_icon="🕵️‍♂️", layout="centered")
 
+st.markdown("""
+<style>
+    /* Import modern typography */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+    /* Global styling */
+    html, body, [class*="css"] {
+        font-family: 'Outfit', sans-serif;
+    }
+
+    /* Dark Mode Gradient Background */
+    .stApp {
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        color: #e2e8f0;
+    }
+
+    /* Top padding removal */
+    .block-container {
+        padding-top: 2rem !important;
+    }
+
+    /* Glassmorphism for text area */
+    .stTextArea textarea {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 12px;
+        color: #f8fafc !important;
+        backdrop-filter: blur(10px);
+        font-size: 1.05rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stTextArea textarea:focus {
+        border-color: #8b5cf6 !important;
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
+    }
+
+    /* Primary Button Styling */
+    .stButton>button {
+        background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+        color: white !important;
+        border: none;
+        border-radius: 30px;
+        padding: 0.6rem 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        width: 100%;
+    }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%);
+    }
+
+    /* Custom Warning Card */
+    div[data-testid="stAlert"] {
+        background: rgba(234, 179, 8, 0.1);
+        border: 1px solid rgba(234, 179, 8, 0.3);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+        color: #fef08a;
+    }
+
+    /* Title Styling */
+    h1, h2, h3 {
+        background: -webkit-linear-gradient(45deg, #60a5fa, #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+    
+    /* Metrics Styling */
+    [data-testid="stMetricValue"] {
+        color: #a78bfa !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 @st.cache_resource
 def load_model():
     """
@@ -125,21 +206,4 @@ if st.button("Analyze Text", type="primary"):
             col1.metric("Human Probability", f"{prob_human:.1%}")
             col2.metric("AI Probability", f"{prob_ai:.1%}")
 
-# -----------------------------------------------------------------------------
-# Instructions for Running (For Grader / User)
-# -----------------------------------------------------------------------------
-with st.expander("💻 How to run this app"):
-    st.markdown("""
-    **To run locally:**
-    ```bash
-    pip install streamlit torch transformers
-    streamlit run app.py
-    ```
-    
-    **To run in Google Colab (via LocalTunnel):**
-    ```python
-    !npm install localtunnel
-    !streamlit run app.py &>/dev/null &
-    !npx localtunnel --port 8501
-    ```
-    """)
+
