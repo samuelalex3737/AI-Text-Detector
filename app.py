@@ -13,80 +13,86 @@ st.set_page_config(page_title="AI Text Detector", page_icon="🕵️‍♂️", 
 st.markdown("""
 <style>
     /* Import modern typography */
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
     /* Global styling */
     html, body, [class*="css"] {
-        font-family: 'Outfit', sans-serif;
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #000000;
     }
 
-    /* Dark Mode Gradient Background */
+    /* Clean white background */
     .stApp {
-        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-        color: #e2e8f0;
+        background: #ffffff;
+        color: #111827;
     }
 
     /* Top padding removal */
     .block-container {
         padding-top: 2rem !important;
+        max-width: 800px;
     }
 
-    /* Glassmorphism for text area */
+    /* Minimalist text area */
     .stTextArea textarea {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px;
-        color: #f8fafc !important;
-        backdrop-filter: blur(10px);
+        background: #f9fafb !important;
+        border: 1px solid #e5e7eb !important;
+        border-radius: 8px;
+        color: #111827 !important;
         font-size: 1.05rem;
-        transition: all 0.3s ease;
+        transition: border-color 0.2s ease;
     }
     
     .stTextArea textarea:focus {
-        border-color: #8b5cf6 !important;
-        box-shadow: 0 0 15px rgba(139, 92, 246, 0.4) !important;
+        border-color: #000000 !important;
+        box-shadow: 0 0 0 1px #000000 !important;
     }
 
-    /* Primary Button Styling */
+    /* Primary Button Styling - Strict Black and White */
     .stButton>button {
-        background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
-        color: white !important;
-        border: none;
-        border-radius: 30px;
+        background: #000000 !important;
+        color: #ffffff !important;
+        border: 1px solid #000000;
+        border-radius: 6px;
         padding: 0.6rem 2rem;
         font-weight: 600;
         font-size: 1.1rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        transition: all 0.2s ease;
         width: 100%;
+        box-shadow: none;
     }
     
     .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
-        background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 100%);
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
     }
 
-    /* Custom Warning Card */
+    /* Minimalist Warning Card */
     div[data-testid="stAlert"] {
-        background: rgba(234, 179, 8, 0.1);
-        border: 1px solid rgba(234, 179, 8, 0.3);
-        border-radius: 12px;
-        backdrop-filter: blur(5px);
-        color: #fef08a;
+        background: #ffffff;
+        border: 1px solid #000000;
+        border-left: 4px solid #000000;
+        border-radius: 4px;
+        color: #000000;
     }
 
-    /* Title Styling */
+    /* Title Styling - Strict Monochrome */
     h1, h2, h3 {
-        background: -webkit-linear-gradient(45deg, #60a5fa, #a78bfa);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #000000 !important;
         font-weight: 600;
+        letter-spacing: -0.02em;
     }
     
     /* Metrics Styling */
     [data-testid="stMetricValue"] {
-        color: #a78bfa !important;
+        color: #000000 !important;
+        font-weight: 600;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #6b7280 !important;
     }
 </style>
 """, unsafe_allow_html=True)
